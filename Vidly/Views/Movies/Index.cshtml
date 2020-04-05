@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Movies</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,20 +15,20 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre.Name)
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+            </td>
+            <td>
+                @item.Genre.Name
+            </td>
+        </tr>
+    }
 
 </table>
