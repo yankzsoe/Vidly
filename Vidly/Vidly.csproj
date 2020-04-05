@@ -203,9 +203,18 @@
     <Compile Include="Migrations\202004050503417_PopulateNameInMembershipType.Designer.cs">
       <DependentUpon>202004050503417_PopulateNameInMembershipType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004050548461_AddBirthofDateInCustomer.cs" />
+    <Compile Include="Migrations\202004050548461_AddBirthofDateInCustomer.Designer.cs">
+      <DependentUpon>202004050548461_AddBirthofDateInCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004050634590_AddGenre.cs" />
+    <Compile Include="Migrations\202004050634590_AddGenre.Designer.cs">
+      <DependentUpon>202004050634590_AddGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -319,6 +328,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004050503417_PopulateNameInMembershipType.resx">
       <DependentUpon>202004050503417_PopulateNameInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004050548461_AddBirthofDateInCustomer.resx">
+      <DependentUpon>202004050548461_AddBirthofDateInCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004050634590_AddGenre.resx">
+      <DependentUpon>202004050634590_AddGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

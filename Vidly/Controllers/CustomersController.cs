@@ -25,7 +25,7 @@ namespace Vidly.Controllers {
         
         // GET: Customers/Details/5
         public ActionResult Details(int id) {
-            var model = _context.Customers.FirstOrDefault(x => x.Id == id);
+            var model = _context.Customers.Include(m => m.MembershipType).FirstOrDefault(x => x.Id == id);
             if (model == null)
                 return HttpNotFound();
             return View(model);
