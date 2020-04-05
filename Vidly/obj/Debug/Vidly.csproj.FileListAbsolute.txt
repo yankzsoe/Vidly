@@ -105,3 +105,9 @@ C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.csproj.CoreCompileInputs
 C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.csproj.CopyComplete
 C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.dll
 C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.pdb
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.csprojAssemblyReference.cache
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.InitialMigrations.resources
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.csproj.GenerateResource.cache
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddIsSubscribedToNewsletterToCustomer.resources
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMembershipType.resources
+C:\Users\yankz\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipType.resources
