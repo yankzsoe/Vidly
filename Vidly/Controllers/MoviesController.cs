@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using Vidly.Models;
+using System.Threading.Tasks;
 
 namespace Vidly.Controllers {
     public class MoviesController : Controller {
-        // GET: Movies
-        public ActionResult Index() {
-            var model = GetMovies();
-            return View(model);
+        private ApplicationDbContext _context;
+        public MoviesController() {
+            _context = new ApplicationDbContext();
         }
-
-        private List<Movie> GetMovies() {
-            return new List<Movie>() {
-                new Movie(){Id = 1, Name = "Spider-Man" },
-                new Movie(){Id = 2, Name = "Star War" }
-            };
+        protected override void Dispose(bool disposing) {
+            _context.Dispose();
+        }
+        // GET: Movies
+        public async Task<ActionResult> Index() {
+            var model = await _context.Movies.Include(g => g.Genre).ToListAsync();
+            return View(model);
         }
 
         public ActionResult Create() {
@@ -25,14 +27,14 @@ namespace Vidly.Controllers {
         }
 
         public ActionResult Edit(int id) {
-            var model = GetMovies().SingleOrDefault(x => x.Id == id);
+            var model = _context.Movies.SingleOrDefault(x => x.Id == id);
             if (model == null)
                 return HttpNotFound("Not Found");
             return View(model);
         }
 
         public ActionResult Details(int id) {
-            var model = GetMovies().SingleOrDefault(x => x.Id == id);
+            var model = _context.Movies.Include(g => g.Genre).SingleOrDefault(x => x.Id == id);
             if (model == null)
                 return HttpNotFound("Not Found");
             return View(model);

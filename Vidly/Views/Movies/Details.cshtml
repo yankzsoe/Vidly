@@ -1,27 +1,21 @@
 ﻿@model Vidly.Models.Movie
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Detail of " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
-
 <div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
+    <h4>@Model.Name</h4>
+    <ul>
+        <li>Genre: @Model.Genre.Name</li>
+        <li>Release Date: @string.Format("{0:dd MMM yyyy}", @Model.ReleaseDate)</li>
+        <li>Date Added: @string.Format("{0:dd MMM yyyy}", @Model.DateAdded)</li>
+        <li>Number In Stock: @Model.NumberInStock</li>
+    </ul>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
