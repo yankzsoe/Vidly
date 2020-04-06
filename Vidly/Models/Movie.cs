@@ -17,7 +17,7 @@ namespace Vidly.Models {
         [Required, Display(Name = "Release Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         [Display(Name = "Number In Stock")]
         public int NumberInStock { get; set; }
