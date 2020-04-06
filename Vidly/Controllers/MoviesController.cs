@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Vidly.Models;
 using System.Threading.Tasks;
+using Vidly.ViewModel;
 
 namespace Vidly.Controllers {
     public class MoviesController : Controller {

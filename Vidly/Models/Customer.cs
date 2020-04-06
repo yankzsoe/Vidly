@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vidly.CustomValidation;
 
 namespace Vidly.Models {
     public class Customer {
@@ -18,6 +19,7 @@ namespace Vidly.Models {
         [Display(Name = "Birth of Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
+        [Min18YearIfAMember]
         public DateTime? BirthofDate { get; set; }
 
         public MembershipType MembershipType { get; set; }

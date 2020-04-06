@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModel;
 
 namespace Vidly.Controllers {
     public class CustomersController : Controller {
@@ -22,8 +23,7 @@ namespace Vidly.Controllers {
             var model = _context.Customers.Include(m => m.MembershipType).ToList();
             return View(model);
         }
-        
-        // GET: Customers/Details/5
+
         public ActionResult Details(int id) {
             var model = _context.Customers.Include(m => m.MembershipType).FirstOrDefault(x => x.Id == id);
             if (model == null)
@@ -31,37 +31,47 @@ namespace Vidly.Controllers {
             return View(model);
         }
 
-        // GET: Customers/Create
         public ActionResult Create() {
-            return View();
+            var membershipType = _context.MembershipTypes.ToList();
+            var model = new CustomerFormViewModel() {
+                MembershipTypes = membershipType
+            };
+            return View("CustomerForm", model);
         }
 
-        // POST: Customers/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection) {
-            try {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            } catch {
-                return View();
-            }
-        }
-
-        // GET: Customers/Edit/5
         public ActionResult Edit(int id) {
             var model = _context.Customers.FirstOrDefault(x => x.Id == id);
-            if (model == null)
-                return HttpNotFound();
-            return View(model);
+            var viewModel = new CustomerFormViewModel() {
+                Customer = model,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
 
-        // POST: Customers/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection) {
+        public ActionResult Save(Customer customer) {
             try {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid) {
+                    var model = new CustomerFormViewModel() {
+                        Customer = customer,
+                        MembershipTypes = _context.MembershipTypes.ToList()
+                    };
+                    return View("CustomerForm", model);
+                }
 
+                if (customer.Id == 0) {
+                    _context.Customers.Add(customer);
+                } else {
+                    var temp = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
+                    if (temp == null)
+                        return HttpNotFound();
+                    temp.Name = customer.Name;
+                    temp.BirthofDate = customer.BirthofDate;
+                    temp.MembershipTypeId = customer.MembershipTypeId;
+                    temp.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                }
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             } catch {
                 return View();

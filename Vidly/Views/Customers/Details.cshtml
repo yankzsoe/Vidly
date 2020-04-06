@@ -13,6 +13,7 @@
         @if (Model.BirthofDate.HasValue) {
             <li>Date of Birth: @string.Format("{0:dd MMM yyyy}", Model.BirthofDate)</li>
         }
+        <li>Is Subcribed to Newsletter? @Model.IsSubscribedToNewsletter </li>
     </ul>
 </div>
 <p>
