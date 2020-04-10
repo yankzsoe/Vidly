@@ -9,8 +9,15 @@ using Vidly.Models;
 namespace Vidly.App_Start {
     public class MappingProfile : Profile {
         public MappingProfile() {
+            //Map Domain Model to Dto
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<Movie, MovieDto>();
+
+            //Map Dto to Domain Model
+            Mapper.CreateMap<CustomerDto, Customer>()
+                .ForMember(f => f.Id, opt => opt.Ignore());
+            Mapper.CreateMap<MovieDto, Movie>()
+                .ForMember(f => f.Id, opt => opt.Ignore());
         }
     }
 }
