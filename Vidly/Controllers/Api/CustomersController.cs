@@ -38,30 +38,35 @@ namespace Vidly.Controllers.Api {
             _context.Customers.Add(customer);
             _context.SaveChanges();
             customerDto.Id = customer.Id;
+
             return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto) {
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto) {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
-            var temp = _context.Customers.SingleOrDefault(x => x.Id == id);
-            if (temp == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            var customer = _context.Customers.SingleOrDefault(x => x.Id == id);
+            if (customer == null)
+                return NotFound();
 
-            Mapper.Map(customerDto, temp);
+            Mapper.Map(customerDto, customer);
             _context.SaveChanges();
+
+            return Ok(customer);
         }
 
         [HttpDelete]
-        public void DeleteCustomer(int id) {
+        public IHttpActionResult DeleteCustomer(int id) {
             var temp = _context.Customers.SingleOrDefault(x => x.Id == id);
             if (temp == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Customers.Remove(temp);
             _context.SaveChanges();
+
+            return Ok("Deleted");
         }
     }
 }
