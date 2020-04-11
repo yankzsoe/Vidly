@@ -7,6 +7,11 @@ namespace Vidly.Models {
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
 
+        [Required, StringLength(50)]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -63,6 +68,11 @@ namespace Vidly.Models {
         [Required]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
+
+        [Required, StringLength(50)]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]
