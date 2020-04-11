@@ -20,11 +20,12 @@ namespace Vidly.Controllers {
         // GET: Movies
         public async Task<ActionResult> Index() {
             var model = await _context.Movies.Include(g => g.Genre).ToListAsync();
-            if(User.IsInRole("CanManageMovies"))
+            if (User.IsInRole(RolesName.CanManageMovies))
                 return View("List");
             return View("ReadOnly");
         }
 
+        [Authorize(Roles = RolesName.CanManageMovies)]
         public ActionResult Create() {
             var movieViewModel = new MovieFormViewModel() {
                 Genres = _context.Genres.ToList()
@@ -44,7 +45,7 @@ namespace Vidly.Controllers {
         }
 
         public ActionResult Save(MovieFormViewModel movie) {
-            
+
             return RedirectToAction("Index");
         }
 
