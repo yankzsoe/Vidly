@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Vidly.CustomValidation;
+using Vidly.Models;
 
 namespace Vidly.Dtos {
     public class CustomerDto {
@@ -19,5 +20,6 @@ namespace Vidly.Dtos {
         public DateTime? BirthofDate { get; set; }
 
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }

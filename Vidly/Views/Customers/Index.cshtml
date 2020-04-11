@@ -23,22 +23,35 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
-            <tr>
-                <td>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</td>
-                <td>@item.MembershipType.Name</td>
-                <td>
-                    <button data-customer-id="@item.Id" class="btn-link js-delete">Delete</button>
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('#customer').DataTable();
+            var table = $('#customer').DataTable({
+                ajax: {
+                    url: '/api/customers',
+                    dataSrc: "",
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             $('#customer').on("click", ".js-delete", function () {
                 var button = $(this);
@@ -48,7 +61,7 @@
                             url: '/api/customers/' + button.attr("data-customer-id"),
                             method: 'DELETE',
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
                             },
                             error: function () {
                                 alert("Error..");
