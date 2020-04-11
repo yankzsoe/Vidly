@@ -20,7 +20,9 @@ namespace Vidly.Controllers {
         // GET: Movies
         public async Task<ActionResult> Index() {
             var model = await _context.Movies.Include(g => g.Genre).ToListAsync();
-            return View(model);
+            if(User.IsInRole("CanManageMovies"))
+                return View("List");
+            return View("ReadOnly");
         }
 
         public ActionResult Create() {
