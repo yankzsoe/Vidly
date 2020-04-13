@@ -8,7 +8,7 @@ namespace Vidly.Models {
     public class Movie {
         public int Id { get; set; }
         public string Name { get; set; }
-        
+
         [Required, Display(Name = "Date Added")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
@@ -24,5 +24,7 @@ namespace Vidly.Models {
 
         public Genre Genre { get; set; }
         public byte GenreId { get; set; }
+
+        public byte NumberAvailable { get; set; }
     }
 }

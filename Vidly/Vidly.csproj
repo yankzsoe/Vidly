@@ -199,15 +199,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="CustomValidation\Min18YearIfAMember.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\RentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +267,14 @@
     <Compile Include="Migrations\202004111313101_AddDrivingLicenseToAppliactionUser.Designer.cs">
       <DependentUpon>202004111313101_AddDrivingLicenseToAppliactionUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004120726019_AddRentals.cs" />
+    <Compile Include="Migrations\202004120726019_AddRentals.Designer.cs">
+      <DependentUpon>202004120726019_AddRentals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004120752022_AddNumberAvailableToMovie.cs" />
+    <Compile Include="Migrations\202004120752022_AddNumberAvailableToMovie.Designer.cs">
+      <DependentUpon>202004120752022_AddNumberAvailableToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -275,6 +286,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RolesName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -588,6 +600,7 @@
     <Content Include="Views\Customers\Delete.cshtml" />
     <Content Include="Views\Movies\List.cshtml" />
     <Content Include="Views\Movies\ReadOnly.cshtml" />
+    <Content Include="Views\Rentals\New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -642,6 +655,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004111313101_AddDrivingLicenseToAppliactionUser.resx">
       <DependentUpon>202004111313101_AddDrivingLicenseToAppliactionUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004120726019_AddRentals.resx">
+      <DependentUpon>202004120726019_AddRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004120752022_AddNumberAvailableToMovie.resx">
+      <DependentUpon>202004120752022_AddNumberAvailableToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
