@@ -17,10 +17,16 @@ namespace Vidly.Controllers.Api {
         }
 
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers() {
-            return _context.Customers
-                .Include(m => m.MembershipType).ToList()
+        public IHttpActionResult GetCustomers(string query = null) {
+            var customerQuery = _context.Customers
+                .Include(m => m.MembershipType);
+            if (!string.IsNullOrEmpty(query))
+                customerQuery = customerQuery.Where(x => x.Name.Contains(query));
+
+            var queryDto = customerQuery.ToList()
                 .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(queryDto);
         }
 
         [HttpGet]
